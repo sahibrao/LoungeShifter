@@ -27,4 +27,26 @@ export class Club {
     const memberNames = this._members.map((member) => member.name);
     console.log("Team Member Names:", memberNames.join(", "));
   }
+
+  // Todo functions
+
+  // TODO: Main function
+  // given a list of people and their timetables, give a list of people for each timeslot
+  createTimetable(people: Person[]): String[] {
+    // initial assumption, each shift needs one Person
+    let allMondayAvailability: boolean[][];
+    for (let i = 0; i < this._members.length; i++) {}
+    return [];
+  }
+
+  checkValidTimetable(people: Person[]): boolean {
+    // each day of the week
+    let able: number = 0;
+    for (let i = 0; i < 4; i++) {
+      for (let k = 0; k < 10; k++) {
+        // if()
+      }
+    }
+    return true;
+  }
 }
