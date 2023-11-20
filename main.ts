@@ -12,6 +12,7 @@ person3.wednesdayAvailability = [true, true, true, true, true];
 
 // Display information about the persons
 console.log("Person 1:", person1);
+console.log(11);
 // console.log("Person 2:", person2);
 // console.log("Person 3:", person3);
 
