@@ -10,6 +10,9 @@ var Person = /** @class */ (function () {
         this._wednesdayAvailability = new Array(10);
         this._thursdayAvailability = new Array(10);
         this._fridayAvailability = new Array(10);
+        this.totalAvailability = new Array(5)
+            .fill([])
+            .map(function () { return new Array(10).fill(true); }); // should be false
         for (var i = 0; i < 10; i++) {
             this._mondayAvailability[i] = false;
             this._tuesdayAvailability[i] = false;

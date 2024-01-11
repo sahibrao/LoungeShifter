@@ -5,6 +5,8 @@ export class Person {
   private _wednesdayAvailability: boolean[];
   private _thursdayAvailability: boolean[];
   private _fridayAvailability: boolean[];
+  public totalAvailability: boolean[][];
+
   private _team: string;
 
   constructor(name: string, team: string) {
@@ -15,6 +17,9 @@ export class Person {
     this._wednesdayAvailability = new Array<boolean>(10);
     this._thursdayAvailability = new Array<boolean>(10);
     this._fridayAvailability = new Array<boolean>(10);
+    this.totalAvailability = new Array(5)
+      .fill([])
+      .map(() => new Array(10).fill(true)); // should be false
 
     for (let i = 0; i < 10; i++) {
       this._mondayAvailability[i] = false;
@@ -80,4 +85,8 @@ export class Person {
   set fridayAvailability(value: boolean[]) {
     this._fridayAvailability = value;
   }
+
+  // get totalAvailability(): boolean[] {
+  //   return this.totalAvailability;
+  // }
 }

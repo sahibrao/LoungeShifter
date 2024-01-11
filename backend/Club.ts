@@ -39,12 +39,22 @@ export class Club {
     return [];
   }
 
-  checkValidTimetable(people: Person[]): boolean {
-    // each day of the week
-    let able: number = 0;
+  // given every Person's timetables, return true if two distinct people can work each shift
+  checkValidTimetable(): boolean {
+    // need an Array of some sorts to check off people that have not been used
+    const available: Person[] = [...this._members];
+
+    // 5 days of the week, 10 timeslots
     for (let i = 0; i < 4; i++) {
       for (let k = 0; k < 10; k++) {
-        // if()
+        // loop through the people and find if their availability is true for
+        for (const member of available) {
+          console.log(member.name);
+
+          if (member.totalAvailability[i][k] == true) {
+            // TODO: need delete member function
+          }
+        }
       }
     }
     return true;
