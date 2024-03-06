@@ -1,1 +1,1 @@
-# LoungeShifter - Marcus, Sahib, Jaden
+# LoungeShifter - Marcus, Sahib
