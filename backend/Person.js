@@ -14,11 +14,11 @@ var Person = /** @class */ (function () {
             .fill([])
             .map(function () { return new Array(10).fill(true); }); // should be false
         for (var i = 0; i < 10; i++) {
-            this._mondayAvailability[i] = false;
-            this._tuesdayAvailability[i] = false;
-            this._wednesdayAvailability[i] = false;
-            this._thursdayAvailability[i] = false;
-            this._fridayAvailability[i] = false;
+            this._mondayAvailability[i] = true;
+            this._tuesdayAvailability[i] = true;
+            this._wednesdayAvailability[i] = true;
+            this._thursdayAvailability[i] = true;
+            this._fridayAvailability[i] = true;
         }
     }
     Object.defineProperty(Person.prototype, "name", {

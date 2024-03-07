@@ -51,12 +51,12 @@ export class Club {
     // need an Array of some sorts to check off people that have not been used
     // const available: Person[] = [...this._members];
     if (this._members.length < this.minimumMembers) {
-      console.log(
-        "only ",
-        this.members.length,
-        " members, not enough for",
-        this.minimumMembers
-      );
+      // console.log(
+      //   "only ",
+      //   this.members.length,
+      //   " members, not enough for",
+      //   this.minimumMembers
+      // );
       return false;
     }
     // // 5 days of the week, 10 timeslots

@@ -12,6 +12,8 @@ export class Person {
   constructor(name: string, team: string) {
     this._name = name;
     this._team = team;
+
+    // 10 values; 12-1230, 1230-1, .... , 430-5
     this._mondayAvailability = new Array<boolean>(10);
     this._tuesdayAvailability = new Array<boolean>(10);
     this._wednesdayAvailability = new Array<boolean>(10);
@@ -22,11 +24,11 @@ export class Person {
       .map(() => new Array(10).fill(true)); // should be false
 
     for (let i = 0; i < 10; i++) {
-      this._mondayAvailability[i] = false;
-      this._tuesdayAvailability[i] = false;
-      this._wednesdayAvailability[i] = false;
-      this._thursdayAvailability[i] = false;
-      this._fridayAvailability[i] = false;
+      this._mondayAvailability[i] = true;
+      this._tuesdayAvailability[i] = true;
+      this._wednesdayAvailability[i] = true;
+      this._thursdayAvailability[i] = true;
+      this._fridayAvailability[i] = true;
     }
   }
 

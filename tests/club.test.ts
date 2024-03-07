@@ -25,16 +25,48 @@ describe("Inefficient Members", () => {
     club.addMember(person1);
     club.addMember(person2);
     club.setMinimumMembers(3);
+    console.log(person1.mondayAvailability);
     expect(club.checkValidTimetable()).toBe(false);
   });
 });
 
-// describe("Math Functions", () => {
-//   test("adds 1 + 2 to equal 3", () => {
-//     expect(3).toBe(3);
-//   });
+describe("Valid Timetable", () => {
+  let club: Club;
+  let person1: Person;
+  let person2: Person;
 
-//   test("subtracts 2 from 5 to equal 3", () => {
-//     expect(3).toBe(3);
-//   });
-// });
+  beforeEach(() => {
+    club = new Club();
+    person1 = new Person("Alice", "Team A");
+    person2 = new Person("Bob", "Team B");
+  });
+
+  test("Everyone with full availablity", () => {
+    for (let i = 0; i < 50; i++) {
+      club.addMember(person1);
+    }
+    expect(club.checkValidTimetable()).toBe(true);
+  });
+
+  test("Everyone with specific timeslot in-order", () => {
+    // Create and add 50 different members to the club
+    for (let i = 1; i <= 50; i++) {
+      const member = new Person(`Member${i}`, `Team${i}`);
+      club.addMember(member);
+    }
+    // TODO: Change member timelots
+
+    expect(club.checkValidTimetable()).toBe(true);
+  });
+
+  test("Everyone with different but valid timeslot", () => {
+    // Create and add 50 different members to the club
+    for (let i = 1; i <= 50; i++) {
+      const member = new Person(`Member${i}`, `Team${i}`);
+      club.addMember(member);
+    }
+    // TODO: Change member timelots
+
+    expect(club.checkValidTimetable()).toBe(true);
+  });
+});
