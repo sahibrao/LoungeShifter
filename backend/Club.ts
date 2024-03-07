@@ -2,9 +2,11 @@ import { Person } from "./Person.js";
 
 export class Club {
   private _members: Person[];
+  private minimumMembers: number;
 
   constructor() {
     this._members = [];
+    this.minimumMembers = 25;
   }
 
   // Method to add a person to the team
@@ -15,6 +17,10 @@ export class Club {
   // Method to get all members of the team
   get members(): Person[] {
     return this._members;
+  }
+
+  setMinimumMembers(members: number) {
+    this.minimumMembers = members;
   }
 
   // Method to remove a person by name
@@ -40,23 +46,33 @@ export class Club {
   }
 
   // given every Person's timetables, return true if two distinct people can work each shift
+  // return false;
   checkValidTimetable(): boolean {
     // need an Array of some sorts to check off people that have not been used
-    const available: Person[] = [...this._members];
-
-    // 5 days of the week, 10 timeslots
-    for (let i = 0; i < 4; i++) {
-      for (let k = 0; k < 10; k++) {
-        // loop through the people and find if their availability is true for
-        for (const member of available) {
-          console.log(member.name);
-
-          if (member.totalAvailability[i][k] == true) {
-            // TODO: need delete member function
-          }
-        }
-      }
+    // const available: Person[] = [...this._members];
+    if (this._members.length < this.minimumMembers) {
+      console.log(
+        "only ",
+        this.members.length,
+        " members, not enough for",
+        this.minimumMembers
+      );
+      return false;
     }
+    // // 5 days of the week, 10 timeslots
+    // for (let i = 0; i < 4; i++) {
+    //   for (let k = 0; k < 10; k++) {
+    //     // loop through the people and find if their availability is true for
+    //     for (const member of available) {
+    //       console.log(member.name);
+
+    //       if (member.totalAvailability[i][k] == true) {
+    //         // TODO: need delete member function
+    //       }
+    //     }
+    //   }
+    // }
+    // return true;
     return true;
   }
 }
