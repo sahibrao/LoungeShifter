@@ -3,6 +3,7 @@ import { Person } from "./Person.js";
 export class Club {
   private _members: Person[];
   private minimumMembers: number;
+  public pairing = new Map<[number, number], [Person, Person]>();
 
   constructor() {
     this._members = [];
@@ -45,6 +46,25 @@ export class Club {
     return [];
   }
 
+  findPerson(peopleFree: Person[]): Person {
+    let minShifts: number = 100;
+    let minIndex = 0;
+
+    for (let index = 0; index < peopleFree.length; index++) {
+      if (peopleFree[index].shifts == 0) {
+        peopleFree[index].shifts = 1;
+        return peopleFree[index];
+      }
+
+      if (peopleFree[index].shifts < minShifts) {
+        minShifts = peopleFree[index].shifts;
+        minIndex = index;
+      }
+    }
+    peopleFree[minIndex].shifts++;
+    return peopleFree[minIndex];
+  }
+
   // given every Person's timetables, return true if two distinct people can work each shift
   // return false;
   checkValidTimetable(): boolean {
@@ -54,6 +74,30 @@ export class Club {
       return false;
     }
 
+    const pairSlot = new Map<[number, number], [Person, Person]>();
+
+    for (let day = 0; day < 4; day++) {
+      for (let hour = 0; hour < 4; day++) {
+        const peopleFree: Person[] = [];
+
+        // see which members are free at given time slot
+        for (const member of this._members) {
+          if (member.free(day, hour)) {
+            peopleFree.push(member);
+          }
+        }
+
+        if (peopleFree.length < 2) {
+          throw new Error("2 People not available at Day ${day} Hour ${hour}");
+        }
+
+        pairSlot.set(
+          [day, hour],
+          [this.findPerson(peopleFree), this.findPerson(peopleFree)]
+        );
+      }
+    }
+    this.pairing = pairSlot;
     return true;
   }
 }

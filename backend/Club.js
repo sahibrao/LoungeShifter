@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Club = void 0;
 var Club = /** @class */ (function () {
     function Club() {
+        this.pairing = new Map();
         this._members = [];
         this.minimumMembers = 25;
     }
@@ -39,6 +40,22 @@ var Club = /** @class */ (function () {
         for (var i = 0; i < this._members.length; i++) { }
         return [];
     };
+    Club.prototype.findPerson = function (peopleFree) {
+        var minShifts = 100;
+        var minIndex = 0;
+        for (var index = 0; index < peopleFree.length; index++) {
+            if (peopleFree[index].shifts == 0) {
+                peopleFree[index].shifts = 1;
+                return peopleFree[index];
+            }
+            if (peopleFree[index].shifts < minShifts) {
+                minShifts = peopleFree[index].shifts;
+                minIndex = index;
+            }
+        }
+        peopleFree[minIndex].shifts++;
+        return peopleFree[minIndex];
+    };
     // given every Person's timetables, return true if two distinct people can work each shift
     // return false;
     Club.prototype.checkValidTimetable = function () {
@@ -47,6 +64,24 @@ var Club = /** @class */ (function () {
         if (this._members.length < this.minimumMembers) {
             return false;
         }
+        var pairSlot = new Map();
+        for (var day = 0; day < 4; day++) {
+            for (var hour = 0; hour < 4; day++) {
+                var peopleFree = [];
+                // see which members are free at given time slot
+                for (var _i = 0, _a = this._members; _i < _a.length; _i++) {
+                    var member = _a[_i];
+                    if (member.free(day, hour)) {
+                        peopleFree.push(member);
+                    }
+                }
+                if (peopleFree.length < 2) {
+                    throw new Error("2 People not available at Day ${day} Hour ${hour}");
+                }
+                pairSlot.set([day, hour], [this.findPerson(peopleFree), this.findPerson(peopleFree)]);
+            }
+        }
+        this.pairing = pairSlot;
         return true;
     };
     return Club;

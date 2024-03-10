@@ -5,6 +5,7 @@ var Person = /** @class */ (function () {
     function Person(name, team) {
         this._name = name;
         this._team = team;
+        this.shifts = 0;
         // 10 values; 12-1230, 1230-1, .... , 430-5
         // this._mondayAvailability = new Array<boolean>(10);
         // this._tuesdayAvailability = new Array<boolean>(10);
@@ -13,7 +14,7 @@ var Person = /** @class */ (function () {
         // this._fridayAvailability = new Array<boolean>(10);
         this.totalAvailability = new Array(5)
             .fill([])
-            .map(function () { return new Array(10).fill(true); }); // should be false
+            .map(function () { return new Array(5).fill(false); });
         // for (let i = 0; i < 10; i++) {
         //   this._mondayAvailability[i] = true;
         //   this._tuesdayAvailability[i] = true;
@@ -81,6 +82,9 @@ var Person = /** @class */ (function () {
     });
     Person.prototype.setTotalAvailability = function (value) {
         this.totalAvailability = value;
+    };
+    Person.prototype.free = function (day, hour) {
+        return true;
     };
     return Person;
 }());

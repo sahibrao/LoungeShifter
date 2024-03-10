@@ -25,7 +25,7 @@ describe("Inefficient Members", () => {
     club.addMember(person1);
     club.addMember(person2);
     club.setMinimumMembers(3);
-    console.log(person1.mondayAvailability);
+    // console.log(person1.mondayAvailability);
     expect(club.checkValidTimetable()).toBe(false);
   });
 });
@@ -70,3 +70,5 @@ describe("Valid Timetable", () => {
     expect(club.checkValidTimetable()).toBe(true);
   });
 });
+
+// TODO testing for findPerson function
