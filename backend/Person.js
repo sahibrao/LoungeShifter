@@ -5,21 +5,22 @@ var Person = /** @class */ (function () {
     function Person(name, team) {
         this._name = name;
         this._team = team;
-        this._mondayAvailability = new Array(10);
-        this._tuesdayAvailability = new Array(10);
-        this._wednesdayAvailability = new Array(10);
-        this._thursdayAvailability = new Array(10);
-        this._fridayAvailability = new Array(10);
+        // 10 values; 12-1230, 1230-1, .... , 430-5
+        // this._mondayAvailability = new Array<boolean>(10);
+        // this._tuesdayAvailability = new Array<boolean>(10);
+        // this._wednesdayAvailability = new Array<boolean>(10);
+        // this._thursdayAvailability = new Array<boolean>(10);
+        // this._fridayAvailability = new Array<boolean>(10);
         this.totalAvailability = new Array(5)
             .fill([])
             .map(function () { return new Array(10).fill(true); }); // should be false
-        for (var i = 0; i < 10; i++) {
-            this._mondayAvailability[i] = true;
-            this._tuesdayAvailability[i] = true;
-            this._wednesdayAvailability[i] = true;
-            this._thursdayAvailability[i] = true;
-            this._fridayAvailability[i] = true;
-        }
+        // for (let i = 0; i < 10; i++) {
+        //   this._mondayAvailability[i] = true;
+        //   this._tuesdayAvailability[i] = true;
+        //   this._wednesdayAvailability[i] = true;
+        //   this._thursdayAvailability[i] = true;
+        //   this._fridayAvailability[i] = true;
+        // }
     }
     Object.defineProperty(Person.prototype, "name", {
         get: function () {
@@ -41,56 +42,46 @@ var Person = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Person.prototype, "mondayAvailability", {
+    Object.defineProperty(Person.prototype, "getTotalAvailability", {
+        // get mondayAvailability(): boolean[] {
+        //   return this._mondayAvailability;
+        // }
+        // set mondayAvailability(value: boolean[]) {
+        //   this._mondayAvailability = value;
+        // }
+        // get tuesdayAvailability(): boolean[] {
+        //   return this._tuesdayAvailability;
+        // }
+        // set tuesdayAvailability(value: boolean[]) {
+        //   this._tuesdayAvailability = value;
+        // }
+        // get wednesdayAvailability(): boolean[] {
+        //   return this._wednesdayAvailability;
+        // }
+        // set wednesdayAvailability(value: boolean[]) {
+        //   this._wednesdayAvailability = value;
+        // }
+        // get thursdayAvailability(): boolean[] {
+        //   return this._thursdayAvailability;
+        // }
+        // set thursdayAvailability(value: boolean[]) {
+        //   this._thursdayAvailability = value;
+        // }
+        // get fridayAvailability(): boolean[] {
+        //   return this._fridayAvailability;
+        // }
+        // set fridayAvailability(value: boolean[]) {
+        //   this._fridayAvailability = value;
+        // }
         get: function () {
-            return this._mondayAvailability;
-        },
-        set: function (value) {
-            this._mondayAvailability = value;
+            return this.totalAvailability;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Person.prototype, "tuesdayAvailability", {
-        get: function () {
-            return this._tuesdayAvailability;
-        },
-        set: function (value) {
-            this._tuesdayAvailability = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Person.prototype, "wednesdayAvailability", {
-        get: function () {
-            return this._wednesdayAvailability;
-        },
-        set: function (value) {
-            this._wednesdayAvailability = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Person.prototype, "thursdayAvailability", {
-        get: function () {
-            return this._thursdayAvailability;
-        },
-        set: function (value) {
-            this._thursdayAvailability = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Person.prototype, "fridayAvailability", {
-        get: function () {
-            return this._fridayAvailability;
-        },
-        set: function (value) {
-            this._fridayAvailability = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    Person.prototype.setTotalAvailability = function (value) {
+        this.totalAvailability = value;
+    };
     return Person;
 }());
 exports.Person = Person;

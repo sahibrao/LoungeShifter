@@ -8,14 +8,16 @@ var club1 = new Club_1.Club();
 var person1 = new Person_1.Person("Alice", "Team A");
 var person2 = new Person_1.Person("Bob", "Team B");
 var person3 = new Person_1.Person("Charlie", "Team C");
-person1.mondayAvailability = [true, false, true, false, true];
-person2.tuesdayAvailability = [false, true, false, true, false];
-person3.wednesdayAvailability = [true, true, true, true, true];
+person1.setTotalAvailability([
+    [true, false, true, false, true],
+    [true, false, true, false, true],
+    [true, false, true, false, true],
+    [true, false, true, false, true],
+    [true, false, true, false, true],
+]);
 club1.addMember(person1);
-club1.addMember(person2);
-club1.addMember(person3);
 console.log("Person 1:", person1.name);
-// console.log(person1.totalAvailability);
+console.log(person1.getTotalAvailability);
 // console.log("Person 2:", person2);
 // console.log("Person 3:", person3);
 club1.checkValidTimetable();
