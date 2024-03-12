@@ -65,8 +65,8 @@ var Club = /** @class */ (function () {
             return false;
         }
         var pairSlot = new Map();
-        for (var day = 0; day < 4; day++) {
-            for (var hour = 0; hour < 4; day++) {
+        for (var day = 0; day < 5; day++) {
+            for (var hour = 0; hour < 5; hour++) {
                 var peopleFree = [];
                 // see which members are free at given time slot
                 for (var _i = 0, _a = this._members; _i < _a.length; _i++) {
@@ -78,10 +78,12 @@ var Club = /** @class */ (function () {
                 if (peopleFree.length < 2) {
                     throw new Error("2 People not available at Day ${day} Hour ${hour}");
                 }
+                console.log(day, hour);
                 pairSlot.set([day, hour], [this.findPerson(peopleFree), this.findPerson(peopleFree)]);
             }
         }
         this.pairing = pairSlot;
+        console.log(pairSlot);
         return true;
     };
     return Club;

@@ -76,8 +76,8 @@ export class Club {
 
     const pairSlot = new Map<[number, number], [Person, Person]>();
 
-    for (let day = 0; day < 4; day++) {
-      for (let hour = 0; hour < 4; day++) {
+    for (let day = 0; day < 5; day++) {
+      for (let hour = 0; hour < 5; hour++) {
         const peopleFree: Person[] = [];
 
         // see which members are free at given time slot
@@ -90,7 +90,7 @@ export class Club {
         if (peopleFree.length < 2) {
           throw new Error("2 People not available at Day ${day} Hour ${hour}");
         }
-
+        console.log(day, hour);
         pairSlot.set(
           [day, hour],
           [this.findPerson(peopleFree), this.findPerson(peopleFree)]
@@ -98,6 +98,7 @@ export class Club {
       }
     }
     this.pairing = pairSlot;
+    // console.log(pairSlot);
     return true;
   }
 }
