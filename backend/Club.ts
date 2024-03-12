@@ -65,13 +65,11 @@ export class Club {
     return peopleFree[minIndex];
   }
 
-  // given every Person's timetables, return true if two distinct people can work each shift
-  // return false;
+  // given every Person's timetables, return true and assign pairslot if two distinct people can work each shift
   checkValidTimetable(): boolean {
-    // need an Array of some sorts to check off people that have not been used
-    // const available: Person[] = [...this._members];
     if (this._members.length < this.minimumMembers) {
-      return false;
+      throw new Error("Not enough members, only ${this._members.length}");
+      // return false;
     }
 
     const pairSlot = new Map<[number, number], [Person, Person]>();
@@ -98,7 +96,6 @@ export class Club {
       }
     }
     this.pairing = pairSlot;
-    // console.log(pairSlot);
     return true;
   }
 }
